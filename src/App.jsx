@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaSun, FaMoon, FaPlus, FaClock, FaEdit } from 'react-icons/fa'
+import { FaSun, FaMoon, FaPlus } from 'react-icons/fa'
 
 import AddForm from './components/AddForm'
 import Card from './components/Card'
