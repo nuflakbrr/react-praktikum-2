@@ -24,12 +24,16 @@ function App() {
   const [search, setSearch] = useState('')
   const [filteredResults, setFilteredResults] = useState([])
 
+  // SEARCH EVENT
+
   function searchItems(searched) {
     setSearch(searched)
     const filteredEventList = eventList.filter(event => event.eventName.toLowerCase().includes(search.toLowerCase()))
 
     setFilteredResults(filteredEventList)
   }
+
+  // HANDLE POPUP
 
   const pushPopUp = (element) => {
     setPopUpStack([...popUpStack, element])
@@ -40,8 +44,10 @@ function App() {
   }
 
   const openForm = () => {
-    pushPopUp(<AddForm addEvent={addEvent} />)
+    pushPopUp(<AddForm key={2} addEvent={addEvent} />)
   }
+
+  // ADD FORM
 
   function addEvent(event) {
     event.preventDefault()
@@ -52,14 +58,38 @@ function App() {
     popPopUp()
   }
 
+  // EDIT FORM
+
   const openEditForm = (eventName, date, index) => {
-    pushPopUp(<EditForm eventName={eventName} date={date} handleSubmit={handleSubmit} index={index} />)
+    pushPopUp(<EditForm key={1} eventName={eventName} date={date} editEvent={editEvent} deleteEvent={deleteEvent} index={index} />)
   }
 
-  function handleSubmit(event) {
+  function editEvent(event) {
     event.preventDefault()
+
     const eventName = event.target.eventName.value
     const date = event.target.date.value
+    const index = event.target.index.value
+
+    const newEventList = [...eventList];
+    newEventList[index] = { eventName, date }
+
+    setEventList(newEventList)
+
+    popPopUp()
+  }
+
+  // DELETE FORM
+
+  function deleteEvent(event, index) {
+    event.preventDefault()
+
+    const newEventList = [...eventList];
+    newEventList.splice(index, 1);
+
+    setEventList(newEventList)
+
+    popPopUp()
   }
 
   return (
@@ -87,11 +117,11 @@ function App() {
           <div className='flex flex-wrap -m-4'>
             {search.length > 1 ? (
               filteredResults.map((event, index) => (
-                <Card key={index} eventName={event.eventName} date={event.date} />
+                <Card key={index} eventName={event.eventName} date={event.date} index={index} openEditForm={openEditForm} />
               ))
             ) : (
               eventList.map((event, index) => (
-                <Card key={index} eventName={event.eventName} date={event.date} />
+                <Card key={index} eventName={event.eventName} date={event.date} index={index} openEditForm={openEditForm} />
               ))
             )}
           </div>
