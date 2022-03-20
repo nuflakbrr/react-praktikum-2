@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { FaSun, FaMoon, FaPlus } from 'react-icons/fa'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import withReactContent from 'sweetalert2-react-content'
 
 import AddForm from './components/AddForm'
 import Card from './components/Card'
 import EditForm from './components/EditForm'
 
 function App() {
+  // GET FULL YEAR
   const date = new Date()
   const year = date.getFullYear()
 
+  // REQUIRED STATE
   const [dark, setDark] = useState()
   const [eventList, setEventList] = useState([
     { eventName: "Hari Laut dan Samudera Nasional", date: `${year}-01-15` },
@@ -25,7 +29,6 @@ function App() {
   const [filteredResults, setFilteredResults] = useState([])
 
   // SEARCH EVENT
-
   function searchItems(searched) {
     setSearch(searched)
     const filteredEventList = eventList.filter(event => event.eventName.toLowerCase().includes(search.toLowerCase()))
@@ -34,7 +37,6 @@ function App() {
   }
 
   // HANDLE POPUP
-
   const pushPopUp = (element) => {
     setPopUpStack([...popUpStack, element])
   }
@@ -47,21 +49,50 @@ function App() {
     pushPopUp(<AddForm key={2} addEvent={addEvent} />)
   }
 
-  // ADD FORM
+  // SweetAlert
+  const MySwal = withReactContent(Swal)
+  function topRightAlert(icon, text) {
+    MySwal.fire({
+      position: 'top-end',
+      icon: icon,
+      text: text,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
 
+  function questionAlert() {
+    Swal.fire({
+      text: 'Apakah anda yakin ingin menghapus kegiatan ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+
+  // ADD FORM
   function addEvent(event) {
     event.preventDefault()
 
     const eventName = event.target.eventName.value;
     const date = event.target.date.value;
-    alert(`${eventName} , Kegiatan baru telah ditambahkan!`)
+    topRightAlert('success', `${eventName}, Kegiatan baru telah ditambahkan!`)
 
     setEventList([...eventList, { eventName, date }])
     popPopUp()
   }
 
   // EDIT FORM
-
   const openEditForm = (eventName, date, index) => {
     pushPopUp(<EditForm key={1} eventName={eventName} date={date} editEvent={editEvent} deleteEvent={deleteEvent} index={index} />)
   }
@@ -78,13 +109,16 @@ function App() {
 
     setEventList(newEventList)
 
-    alert(`${eventName} , Kegiatan telah diubah!`)
+    if (eventName === eventList[index].eventName && date === eventList[index].date) {
+      topRightAlert('warning', 'Tidak ada perubahan')
+    } else {
+      topRightAlert('success', `${eventName}, Kegiatan telah diubah!`)
+    }
 
     popPopUp()
   }
 
   // DELETE FORM
-
   function deleteEvent(event, index) {
     const confirm = window.confirm('Apakah anda yakin ingin menghapus kegiatan ini?')
     const eventNameVal = eventList[index].eventName
@@ -97,10 +131,10 @@ function App() {
 
       setEventList(newEventList)
 
-      alert(`Kegiatan ${eventNameVal} telah dihapus!`)
+      topRightAlert('success', `Kegiatan ${eventNameVal} telah dihapus!`)
       popPopUp()
     } else {
-      alert(`Kegiatan ${eventNameVal} tidak dihapus!`)
+      topRightAlert('warning', `Kegiatan ${eventNameVal} tidak dihapus!`)
       popPopUp()
     }
   }

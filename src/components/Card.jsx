@@ -5,7 +5,7 @@ function Card({ eventName, date, openEditForm, index }) {
     return (
         <>
             <div className='lg:w-1/4 md:w-1/2 p-4 w-full' onClick={() => openEditForm(eventName, date, index)}>
-                <div className='border bg-gray-200 dark:bg-gray-900 transition-all ease-in-out duration-300 rounded px-5 py-5'>
+                <div className='border bg-gray-200 dark:bg-gray-900 transition-all ease-in-out duration-300 rounded px-5 py-5 cursor-pointer'>
                     <h2 className='title-font text-lg'>{eventName}</h2>
                     <div className='flex text-sm justify-between mt-2'>
                         <div className='flex items-center'>
