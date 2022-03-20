@@ -61,25 +61,6 @@ function App() {
     })
   }
 
-  function questionAlert() {
-    Swal.fire({
-      text: 'Apakah anda yakin ingin menghapus kegiatan ini?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-      }
-    })
-  }
-
   // ADD FORM
   function addEvent(event) {
     event.preventDefault()
