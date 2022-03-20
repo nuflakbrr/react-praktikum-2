@@ -86,19 +86,23 @@ function App() {
   // DELETE FORM
 
   function deleteEvent(event, index) {
-    if (window.confirm(`Apakah Anda yakin ingin menghapus event ini?`)) {
-      alert(`Kegiatan telah dihapus!`)
+    const confirm = window.confirm('Apakah anda yakin ingin menghapus kegiatan ini?')
+    const eventNameVal = eventList[index].eventName
+
+    if (confirm === true) {
+      event.preventDefault()
+
+      const newEventList = [...eventList];
+      newEventList.splice(index, 1);
+
+      setEventList(newEventList)
+
+      alert(`Kegiatan ${eventNameVal} telah dihapus!`)
+      popPopUp()
+    } else {
+      alert(`Kegiatan ${eventNameVal} tidak dihapus!`)
+      popPopUp()
     }
-
-    event.preventDefault()
-
-    const newEventList = [...eventList];
-    newEventList.splice(index, 1);
-
-    setEventList(newEventList)
-
-
-    popPopUp()
   }
 
   return (
