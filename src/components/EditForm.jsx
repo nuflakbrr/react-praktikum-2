@@ -32,11 +32,11 @@ function EditForm({ editEvent, deleteEvent, eventName, date, index }) {
                     <form onSubmit={editEvent}>
                         <input hidden name='index' value={indexValue} readOnly />
                         <div className='relative'>
-                            <label htmlFor='eventName'>Nama Kegiatan</label>
+                            <label htmlFor='eventName'>Nama Kegiatan <span className='text-red-500'>*</span></label>
                             <input type='text' value={eventNameValue} onChange={changeEventName} name='eventName' className='w-full flex-1 bg-gray-white text-gray-800 placeholder-gray-400 border border-gray-300 focus:ring ring-blue-300 dark:ring-blue-500 rounded outline-none transition duration-100 px-3 py-2' />
                         </div>
                         <div className='relative mt-5'>
-                            <label htmlFor='date'>Tanggal Kegiatan</label>
+                            <label htmlFor='date'>Tanggal Kegiatan <span className='text-red-500'>*</span></label>
                             <input type='date' value={dateValue} onChange={changeDate} name='date' className='w-full flex-1 bg-gray-white text-gray-800 placeholder-gray-400 border border-gray-300 focus:ring ring-blue-300 dark:ring-blue-500 rounded outline-none transition duration-100 px-3 py-2' />
                         </div>
                         <div className='flex justify-end items-center relative mt-5'>

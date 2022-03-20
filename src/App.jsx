@@ -51,8 +51,10 @@ function App() {
 
   function addEvent(event) {
     event.preventDefault()
+
     const eventName = event.target.eventName.value;
     const date = event.target.date.value;
+    alert(`${eventName} , Kegiatan baru telah ditambahkan!`)
 
     setEventList([...eventList, { eventName, date }])
     popPopUp()
@@ -76,18 +78,25 @@ function App() {
 
     setEventList(newEventList)
 
+    alert(`${eventName} , Kegiatan telah diubah!`)
+
     popPopUp()
   }
 
   // DELETE FORM
 
   function deleteEvent(event, index) {
+    if (window.confirm(`Apakah Anda yakin ingin menghapus event ini?`)) {
+      alert(`Kegiatan telah dihapus!`)
+    }
+
     event.preventDefault()
 
     const newEventList = [...eventList];
     newEventList.splice(index, 1);
 
     setEventList(newEventList)
+
 
     popPopUp()
   }
