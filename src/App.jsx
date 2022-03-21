@@ -10,8 +10,7 @@ import Footer from './components/Footer'
 
 function App() {
   // GET FULL YEAR
-  const date = new Date()
-  const year = date.getFullYear()
+  const year = new Date().getFullYear()
 
   // REQUIRED STATE
   const [dark, setDark] = useState()
@@ -66,8 +65,8 @@ function App() {
   function addEvent(event) {
     event.preventDefault()
 
-    const eventName = event.target.eventName.value;
-    const date = event.target.date.value;
+    const eventName = event.target.eventName.value
+    const date = event.target.date.value
     topRightAlert('success', `${eventName}, Kegiatan baru telah ditambahkan!`)
 
     setEventList([...eventList, { eventName, date }])
@@ -86,7 +85,7 @@ function App() {
     const date = event.target.date.value
     const index = event.target.index.value
 
-    const newEventList = [...eventList];
+    const newEventList = [...eventList]
     newEventList[index] = { eventName, date }
 
     setEventList(newEventList)
@@ -108,8 +107,8 @@ function App() {
     if (confirm === true) {
       event.preventDefault()
 
-      const newEventList = [...eventList];
-      newEventList.splice(index, 1);
+      const newEventList = [...eventList]
+      newEventList.splice(index, 1)
 
       setEventList(newEventList)
 
@@ -144,15 +143,17 @@ function App() {
           </div>
           <div className='border-b my-5 dark:border-gray-500'></div>
           <div className='flex flex-wrap -m-4'>
-            {search.length > 1 ? (
-              filteredResults.map((event, index) => (
-                <Card key={index} eventName={event.eventName} date={event.date} index={index} openEditForm={openEditForm} />
-              ))
-            ) : (
-              eventList.map((event, index) => (
-                <Card key={index} eventName={event.eventName} date={event.date} index={index} openEditForm={openEditForm} />
-              ))
-            )}
+            {
+              search.length > 1 ? (
+                filteredResults.map((event, index) => (
+                  <Card key={index} eventName={event.eventName} date={event.date} index={index} openEditForm={openEditForm} />
+                ))
+              ) : (
+                eventList.map((event, index) => (
+                  <Card key={index} eventName={event.eventName} date={event.date} index={index} openEditForm={openEditForm} />
+                ))
+              )
+            }
           </div>
         </div>
         <Footer year={year} />
