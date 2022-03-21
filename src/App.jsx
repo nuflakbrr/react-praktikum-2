@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content'
 import AddForm from './components/AddForm'
 import Card from './components/Card'
 import EditForm from './components/EditForm'
+import Footer from './components/Footer'
 
 function App() {
   // GET FULL YEAR
@@ -46,7 +47,7 @@ function App() {
   }
 
   const openForm = () => {
-    pushPopUp(<AddForm key={2} addEvent={addEvent} />)
+    pushPopUp(<AddForm key={2} addEvent={addEvent} onClose={popPopUp} />)
   }
 
   // SweetAlert
@@ -75,7 +76,7 @@ function App() {
 
   // EDIT FORM
   const openEditForm = (eventName, date, index) => {
-    pushPopUp(<EditForm key={1} eventName={eventName} date={date} editEvent={editEvent} deleteEvent={deleteEvent} index={index} />)
+    pushPopUp(<EditForm key={1} eventName={eventName} date={date} editEvent={editEvent} deleteEvent={deleteEvent} index={index} onClose={popPopUp} />)
   }
 
   function editEvent(event) {
@@ -123,7 +124,7 @@ function App() {
   return (
     <div className={dark ? '' : 'dark'}>
       {popUpStack}
-      <div className='dark:bg-gray-900 dark:text-gray-300 transition-all ease-in-out duration-300 min-h-screen'>
+      <div className='dark:bg-gray-900 dark:text-gray-300 transition-all ease-in-out duration-300 min-h-screen flex flex-col justify-between'>
         <div className='container px-10 py-10 mx-auto'>
           <div className='flex flex-col justify-center items-center'>
             <h1 className='font-bold text-center md:text-4xl text-3xl mb-10'>Agenda Hari Lingkungan Hidup</h1>
@@ -154,6 +155,7 @@ function App() {
             )}
           </div>
         </div>
+        <Footer year={year} />
       </div>
     </div>
   )
