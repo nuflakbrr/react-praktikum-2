@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { FaCheck, FaTrashAlt } from 'react-icons/fa'
+import { AiOutlineClose } from 'react-icons/ai'
 
-function EditForm({ editEvent, deleteEvent, eventName, date, index }) {
+function EditForm({ editEvent, deleteEvent, eventName, date, index, onClose }) {
     const [eventNameValue, setEventNameValue] = useState(eventName)
     const [dateValue, setDateValue] = useState(date)
     const [indexValue, setIndexValue] = useState(index)
@@ -27,6 +28,11 @@ function EditForm({ editEvent, deleteEvent, eventName, date, index }) {
     return (
         <div className='fixed bg-gray-400/80 w-full h-full'>
             <div className='lg:w-1/4 md:w-1/2 p-4 w-full my-20 container mx-auto border bg-white rounded'>
+                <div className='flex justify-end items-center'>
+                    <button onClick={onClose} className='text-lg'>
+                        <AiOutlineClose />
+                    </button>
+                </div>
                 <h1 className='text-center text-2xl'>Form Ubah Kegiatan</h1>
                 <div className='px-10 py-5'>
                     <form onSubmit={editEvent}>

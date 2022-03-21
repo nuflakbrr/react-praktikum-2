@@ -1,10 +1,16 @@
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
+import { AiOutlineClose } from 'react-icons/ai'
 
-function AddForm({ addEvent }) {
+function AddForm({ addEvent, onClose }) {
     return (
         <div className="fixed bg-gray-400/80 w-full h-full">
             <div className='lg:w-1/4 md:w-1/2 p-4 w-full my-20 container mx-auto border bg-white rounded'>
+                <div className='flex justify-end items-center'>
+                    <button onClick={onClose} className='text-lg'>
+                        <AiOutlineClose />
+                    </button>
+                </div>
                 <h1 className='text-center text-2xl'>Form Tambah Kegiatan</h1>
                 <div className='px-10 py-5'>
                     <form onSubmit={addEvent}>
