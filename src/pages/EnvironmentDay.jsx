@@ -125,8 +125,8 @@ function EnvironmentDay() {
         <>
             <div className={dark ? '' : 'dark'}>
                 {popUpStack}
-                <Navbar />
                 <div className='dark:bg-gray-900 dark:text-gray-300 transition-all ease-in-out duration-300 min-h-screen flex flex-col justify-between'>
+                    <Navbar />
                     <div className='container px-10 py-10 mx-auto'>
                         <div className='flex flex-col justify-center items-center'>
                             <h1 className='font-bold text-center md:text-4xl text-3xl mb-10'>Agenda Hari Lingkungan Hidup</h1>
