@@ -9,7 +9,8 @@ function Navbar() {
                     <span className="ml-3 text-xl text-gray-500 dark:text-white">Praktikum 3</span>
                 </NavLink>
                 <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                    <NavLink to='/' className="mr-5 hover:text-gray-300">Soal 1</NavLink>
+                    <NavLink to='/' className="mr-5 hover:text-gray-300">Modul</NavLink>
+                    <NavLink to='/soal1' className="mr-5 hover:text-gray-300">Soal 1</NavLink>
                     <NavLink to='/soal2' className="mr-5 hover:text-gray-300">Soal 2</NavLink>
                 </nav>
             </div>
