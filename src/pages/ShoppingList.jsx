@@ -16,6 +16,7 @@ function ShoppingList() {
     const { products } = data
 
     // REQUIRED STATE
+    const [dark, setDark] = useState()
     const [cartItems, setCartItems] = useState([])
     const [search, setSearch] = useState('')
     const [filteredResults, setFilteredResults] = useState([])
@@ -83,7 +84,7 @@ function ShoppingList() {
     }
 
     return (
-        <div>
+        <div className={dark ? '' : 'dark'}>
             <div className='bg-gray-900 min-h-screen'>
                 <Navbar />
                 <div className='flex justify-center items-center flex-col'>
